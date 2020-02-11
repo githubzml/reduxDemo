@@ -1,10 +1,7 @@
-import {CHANGE_INPUT,ADD_ITEM,DELETE_ITEM} from "./actionTypes"
+import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM, GET_LIST } from "./actionTypes"
 const defaultState = {
     inputValue: "write something",
     list: [
-        "好好学习",
-        "天天向上",
-        "是的啊"
     ]
 };
 export default (state = defaultState, action) => {
@@ -27,6 +24,12 @@ export default (state = defaultState, action) => {
         //深拷贝
         let newState = JSON.parse(JSON.stringify(state));
         newState.list.splice(action.index, 1);
+        return newState;
+    }
+    if (action.type === GET_LIST) {
+        //深拷贝
+        let newState = JSON.parse(JSON.stringify(state));
+        newState.list = action.list;
         return newState;
     }
     return state;
